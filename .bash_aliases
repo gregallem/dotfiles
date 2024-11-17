@@ -7,4 +7,4 @@ alias cp='cp -vi'
 alias mv='mv -vi'
 alias mkdir='mkdir -pv'
 alias distug='distrobox upgrade --all'
-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
