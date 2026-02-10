@@ -1,36 +1,28 @@
-# .bashrc
+export PATH="${HOME}/.local/bin":${PATH}
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+eval "$(fzf --bash)"
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+eval "$(starship init bash)" 
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+eval "$(zoxide init bash)"
 
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
-fi
-unset rc
+# Aliases
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias mkdir='mkdir -pv'
+alias rebuild='sudo nixos-rebuild switch'
+alias gc='nix-collect-garbage' 
+alias bumnt='sudo mount /dev/sdb1 /run/media/greg/'
+alias spf='superfile'
+alias switch='nh os switch'
+alias clean='nh clean all --keep-since 4d --keep 4 --ask'
+alias search='nh search --limit 3'
 
-shopt -s autocd # Allow you to cd into a directory just by typing the directory name
+HISTSIZE=-1
+HISTFILESIZE=-1 
+HISTCONTROL=ignoreboth
 
-#Aliases
+nitch
 
-if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
-fi
-
-## Custom prompt
-# PS1='\[\e[0;36m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;35m\]\w\[\e[0m\]$ '
+MICRO_TRUECOLOR=1
