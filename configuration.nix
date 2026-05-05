@@ -14,9 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   # enable zram swap
   zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
 
@@ -110,8 +107,6 @@
       deja-dup
       procps
       starship
-      sway-audio-idle-inhibit
-      swayidle
       zoom-us
 ];
   };
@@ -123,9 +118,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Install niri dankmaterial shell
+  # Install niri 
   programs.niri.enable = true;
-  # programs.dms-shell.enable = true;
 
   # Nerd fonts
    fonts.packages = with pkgs; [
@@ -140,16 +134,30 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      trezor-suite
-     superfile
      wget
      xwayland-satellite
      zoxide
-     nitch
      helix
      noctalia-shell
+     broot
+     dgop
+     fastfetch
+     wayland-pipewire-idle-inhibit
  ];
 
   services.trezord.enable = true;
+
+  #systemd service
+  systemd.user.services.wayland-pipewire-idle-inhibit= {
+  enable = true;
+  after = [ "network.target" ];
+  wantedBy = [ "default.target" ];
+  description = "wayland-pipewire-idle-inhibit";
+  serviceConfig = {
+      Type = "simple";
+      ExecStart = ''/run/current-system/sw/bin/wayland-pipewire-idle-inhibit'';
+  };
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
