@@ -9,7 +9,7 @@ eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
 # Aliases
-alias rm='rm -vi'
+alias rm='rm -vi --preserve-root'
 alias cp='cp -vi'
 alias mv='mv -vi'
 alias mkdir='mkdir -pv'
@@ -19,6 +19,7 @@ alias bumnt='sudo mount /dev/sdb1 /run/media/greg/'
 alias switch='nh os switch'
 alias clean='nh clean all --keep-since 4d --keep 4 --ask'
 alias search='nh search --limit 3'
+alias pi='ssh pi@nextdnspi.local'
 
 HISTSIZE=-1
 HISTFILESIZE=-1 
