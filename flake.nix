@@ -1,19 +1,21 @@
 {
-  description = "A simple NixOS flake";
+  description = "NixOS config flake";
 
   inputs = {
-    # NixOS official package source, using the nixos-25.05 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    noctalia.url = "github:noctalia-dev/noctalia";
   };
 
-  outputs = { self, nixpkgs, ... }: {
-    # Please replace my-nixos with your hostname
+  outputs = { self, nixpkgs, noctalia, ... }: {
+
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit noctalia;
+      };
       modules = [
-        # Import the previous configuration.nix we used,
-        # so the old configuration file still takes effect
         ./configuration.nix
       ];
     };
+
   };
 }

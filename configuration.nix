@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, noctalia, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  #Allow insecure elecctron app
+    nixpkgs.config.permittedInsecurePackages = [
+     "electron-39.8.10"
+             ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -138,26 +143,14 @@
      xwayland-satellite
      zoxide
      helix
-     noctalia-shell
      broot
      dgop
      fastfetch
      wayland-pipewire-idle-inhibit
+     noctalia.packages.${pkg.system}.default
  ];
 
   services.trezord.enable = true;
-
-  #systemd service
-  systemd.user.services.wayland-pipewire-idle-inhibit= {
-  enable = true;
-  after = [ "network.target" ];
-  wantedBy = [ "default.target" ];
-  description = "wayland-pipewire-idle-inhibit";
-  serviceConfig = {
-      Type = "simple";
-      ExecStart = ''/run/current-system/sw/bin/wayland-pipewire-idle-inhibit'';
-  };
-};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
