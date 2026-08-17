@@ -13,7 +13,13 @@
   #Allow insecure elecctron app
     nixpkgs.config.permittedInsecurePackages = [
      "electron-39.8.10"
-             ];
+       ];
+
+  #install noctalia
+    nix.settings = {
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+    };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -143,16 +149,25 @@
      xwayland-satellite
      zoxide
      helix
-     broot
      dgop
      fastfetch
      wayland-pipewire-idle-inhibit
      noctalia.packages.${pkg.system}.default
      nixd
+     unzip
+     kitty
+     superfile
  ];
 
   services.trezord.enable = true;
 
+  #Exclude some gnome apps
+  environment.gnome.excludePackages = with pkgs; [
+  gnome-console
+  epiphany
+  gnome-tour
+  ];
+   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
