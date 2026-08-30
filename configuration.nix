@@ -157,6 +157,7 @@
      unzip
      kitty
      superfile
+     abiword
  ];
 
   services.trezord.enable = true;
