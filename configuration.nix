@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, noctalia, ... }:
+{ config, pkgs,  ... }:
 
 {
   imports =
@@ -14,12 +14,6 @@
     nixpkgs.config.permittedInsecurePackages = [
      "electron-39.8.10"
        ];
-
-  #install noctalia
-    nix.settings = {
-    extra-substituters = [ "https://noctalia.cachix.org" ];
-    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
-    };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -122,9 +116,11 @@
 ];
   };
 
-  # Install firefox geary yazi
+  # Install firefox geary yazi flyline
   programs.firefox.enable = true;
   programs.geary.enable = true;
+  programs.flyline.enable = true;
+  programs.yazi.enable = true;
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -152,12 +148,11 @@
      dgop
      fastfetch
      wayland-pipewire-idle-inhibit
-     noctalia.packages.${pkg.system}.default
      nixd
      unzip
      kitty
-     superfile
      abiword
+     noctalia
  ];
 
   services.trezord.enable = true;
