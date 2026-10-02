@@ -19,7 +19,6 @@ alias switch='nh os switch'
 alias clean='nh clean all --keep-since 4d --keep 3 --ask'
 alias search='nh search --limit 3'
 alias pi='ssh pi@192.168.20.70'
-alias spf='superfile'
 
 HISTSIZE=-1
 HISTFILESIZE=-1 
