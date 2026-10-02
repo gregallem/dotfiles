@@ -10,11 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  #Allow insecure elecctron app
-    nixpkgs.config.permittedInsecurePackages = [
-     "electron-39.8.10"
-       ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -116,12 +111,11 @@
 ];
   };
 
-  # Install firefox geary yazi flyline
+  # Install firefox geary flyline
   programs.firefox.enable = true;
   programs.geary.enable = true;
   programs.flyline.enable = true;
-  programs.yazi.enable = true;
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -153,7 +147,9 @@
      kitty
      abiword
      noctalia
- ];
+     file
+     yazi
+];
 
   services.trezord.enable = true;
 
