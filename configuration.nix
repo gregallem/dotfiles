@@ -98,16 +98,6 @@
     description = "Greg Allen";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      bat
-      bitwarden-desktop
-      caligula
-      duf
-      fzf
-      git
-      deja-dup
-      procps
-      starship
-      zoom-us
 ];
   };
 
@@ -149,6 +139,16 @@
      noctalia
      file
      yazi
+     fzf
+     bat
+     bitwarden-desktop
+     caligula
+     duf
+     git
+     deja-dup
+     procps
+     zoom-us
+     starship
 ];
 
   services.trezord.enable = true;
