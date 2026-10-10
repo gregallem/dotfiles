@@ -19,6 +19,8 @@ alias switch='nh os switch'
 alias clean='nh clean all --keep-since 4d --keep 3 --ask'
 alias search='nh search --limit 3'
 alias pi='ssh pi@192.168.20.70'
+alias mtbup='udisksctl mount -b /dev/disk/by-uuid/7ED2F0F9D2F0B68D'
+alias mtsmb='gio mount smb://192.168.20.103/harddrive/'
 
 HISTSIZE=-1
 HISTFILESIZE=-1 
